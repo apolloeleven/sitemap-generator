@@ -5,34 +5,11 @@ const discoverResources = require('./discoverResources');
 const stringifyURL = require('./helpers/stringifyURL');
 
 module.exports = (uri, options = {}) => {
+  options.excludeExtensions = options.excludeExtensions || [];
+  options.extraExcludeExtensions = options.extraExcludeExtensions || [];
+
   // excluded filetypes
-  const exclude = [
-    'gif',
-    'jpg',
-    'jpeg',
-    'png',
-    'ico',
-    'bmp',
-    'ogg',
-    'webp',
-    'mp4',
-    'webm',
-    'mp3',
-    'ttf',
-    'woff',
-    'json',
-    'rss',
-    'atom',
-    'gz',
-    'zip',
-    'rar',
-    '7z',
-    'css',
-    'js',
-    'gzip',
-    'exe',
-    'svg'
-  ].join('|');
+  const exclude = options.excludeExtensions.contact(options.extraExcludeExtensions).join('|');
 
   const extRegex = new RegExp(`\\.(${exclude})$`, 'i');
 

@@ -26,7 +26,35 @@ module.exports = function SitemapGenerator(uri, opts) {
     decodeResponses: true,
     lastMod: false,
     changeFreq: '',
-    priorityMap: []
+    priorityMap: [],
+    excludeExtensions: [
+      'gif',
+      'jpg',
+      'jpeg',
+      'png',
+      'ico',
+      'bmp',
+      'ogg',
+      'webp',
+      'mp4',
+      'webm',
+      'mp3',
+      'ttf',
+      'woff',
+      'json',
+      'rss',
+      'atom',
+      'gz',
+      'zip',
+      'rar',
+      '7z',
+      'css',
+      'js',
+      'gzip',
+      'exe',
+      'svg'
+    ],
+    extraExcludeExtensions: []
   };
 
   if (!uri) {
