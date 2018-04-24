@@ -9,7 +9,7 @@ module.exports = (uri, options = {}) => {
   options.extraExcludeExtensions = options.extraExcludeExtensions || [];
 
   // excluded filetypes
-  const exclude = options.excludeExtensions.contact(options.extraExcludeExtensions).join('|');
+  const exclude = options.excludeExtensions.concat(options.extraExcludeExtensions).join('|');
 
   const extRegex = new RegExp(`\\.(${exclude})$`, 'i');
 
