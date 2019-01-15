@@ -108,7 +108,15 @@ module.exports = function SitemapGenerator(uri, opts) {
 
   crawler.on('fetchclienterror', (queueError, errorData) => {
     if (errorData.code === 'ENOTFOUND') {
-      throw new Error(`Site "${parsedUrl.href}" could not be found.`);
+      if (options.emitENOTFOUNDError) {
+        emitter.emit('ENOTFOUNDError', {
+          code: 'ENOTFOUND',
+          message: 'ENOTFOUND',
+          url: queueError.url
+        });
+      } else {
+        throw new Error(`Site "${parsedUrl.href}" could not be found.`);
+      }
     } else {
       emitError(400, errorData.message);
     }
